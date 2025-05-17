@@ -103,21 +103,5 @@ Todo o pipeline foi orquestrado com:
     └── tests
         ├── dags
         └── etl
-        
-        
 
-poetry run pytest tests/etl/test_*.py
-
-poetry run python include/load.py 
-
-docker ps
-
-docker exec -it processo-dados2_5c5e37-scheduler-1 /bin/bash
-
-cd archive
-
-ls
-
-boi_gordo_2025-05-17.parquet 
-
-docker cp 26d641a2212b:/usr/local/airflow/archive/boi_gordo.parquet .
+        ![alt text](image.png)
