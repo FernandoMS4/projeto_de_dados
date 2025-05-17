@@ -104,4 +104,7 @@ Todo o pipeline foi orquestrado com:
         ├── dags
         └── etl
 
+
+Um pouco do processo:
+
         ![alt text](image.png)
