@@ -1,6 +1,7 @@
 ![Python](https://img.shields.io/badge/Python-3.11.5-blue?logo=python&logoColor=white)
 ![Airflow](https://img.shields.io/badge/Airflow-2.8+-brightgreen?logo=apache-airflow)
 ![Poetry](https://img.shields.io/badge/Poetry-managed-8c8c8c?logo=python)
+![Pyenv](https://img.shields.io/badge/python-pyenv-informational?logo=python&logoColor=white&color=306998)
 
 📊 Projeto de Eng de Dados Ponta
 
@@ -104,7 +105,5 @@ Todo o pipeline foi orquestrado com:
         ├── dags
         └── etl
 
-
-Um pouco do processo rodando:
-
-        ![alt text](images/image.png)
+Um pouco do processo rodando
+![alt text](images/image.png)
