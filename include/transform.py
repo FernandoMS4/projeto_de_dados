@@ -1,4 +1,4 @@
-from extract import extract_cepea, extract_ipca
+from .extract import extract_df, extract_ipca
 from datetime import datetime
 import pandas as pd
 
@@ -7,12 +7,11 @@ class transform_cepea:
     def __init__(self):
         pass
 
-    def transform_dataframe(self) -> pd.DataFrame:
+    def transform_dataframe(self, df: pd.DataFrame) -> pd.DataFrame:
         """
         Este método preenche os valores vazios de data com a data corrente no formato mm/yyyy
         Atribui para os valores nulos  do campo Valor o correpondente do mes precedente
         """
-        df: pd.DataFrame = extract_cepea('./archive/CEPEA-20250416134013.xlsx')
 
         data_atual: datetime = datetime.now().strftime('%m-%Y')
 
@@ -25,16 +24,19 @@ class transform_cepea:
         df.loc[df['Data'].isnull() | (df['Data'] == ''), 'Data'] = data_atual
 
         df['Valor'] = df['Valor'].ffill()
+
+        df['Data'] = df['Data'].dt.strftime('%Y-%m-%d')
         return df
 
-    def transform_ipca(self) -> pd.DataFrame:
+    def transform_ipca(self, df: pd.DataFrame) -> pd.DataFrame:
         """
         Este método realiza a captura dos dados do IPCA e faz a junção ao dataframe utilizando a data como parametro de comparação
         e retorna o dataframe unificado
         """
-        df: pd.DataFrame = self.transform_dataframe()
-        min_date: str = datetime.date(df['Data'].min()).strftime('%d/%m/%Y')
-        max_date: str = datetime.date(df['Data'].max()).strftime('%d/%m/%Y')
+        min_date: str = pd.to_datetime(df['Data']).min().strftime('%d/%m/%Y')
+        max_date: str = datetime.date(
+            pd.to_datetime(df['Data']).max()
+        ).strftime('%d/%m/%Y')
 
         ipca: list = extract_ipca(start_date=min_date, end_date=max_date)
 
@@ -52,6 +54,8 @@ class transform_cepea:
 
         df['ipca_acumulado'] = df['ipca'].cumsum()
 
+        df['Data'] = pd.to_datetime(df['Data']).dt.strftime('%m/%Y')
+
         df['real'] = df['Valor'] + (
             df['Valor']
             * (
@@ -63,13 +67,14 @@ class transform_cepea:
             )
         )
         df['real'] = pd.to_numeric(df['real']).round(decimals=2)
-        return df
 
-    def main(self):
-        return self.transform_ipca()
+        df['Data'] = pd.to_datetime(
+            df['Data'], format='%m/%Y', errors='coerce'
+        ).dt.strftime('%Y-%m-%d')
+        return df
 
 
 if __name__ == '__main__':
     transform_teste = transform_cepea()
-    df = transform_teste.main()
+    df = transform_teste.transform_dataframe()
     print(df)

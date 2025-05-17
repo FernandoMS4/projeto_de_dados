@@ -1,0 +1,4 @@
+dt_cmdty,nome_cmdty,tipo_cmdty,cmdty_um,cmdty_vl_rs_um,cmdty_var_mes_perc,dt_etl
+2023-01-01,Boi_Gordo,Indicador do Boi Gordo CEPEA/B3,15 Kg/carcaÃ§a,285.97,0.000000000,2023-01-02
+2023-02-01,Boi_Gordo,Indicador do Boi Gordo CEPEA/B3,15 Kg/carcaÃ§a,289.72,0.013113263629052,2023-02-02
+2023-02-01,Boi_Gordo,Indicador do Boi Gordo CEPEA/B3,15 Kg/carcaÃ§a,289.72,0.013113263629052,2023-02-02

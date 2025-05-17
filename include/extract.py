@@ -10,26 +10,31 @@ class extract_df:
     def __init__(self):
         pass
 
-    def extract_dataframes(self, arquivo: str, extencao: str) -> pd.DataFrame:
+    def extract_dataframes(
+        self, arquivo: str, extencao: str, skips_: int = 0
+    ) -> pd.DataFrame:
         """
-        Método para leitura de arquivos
+        Método para leitura de arquivos e carrega em memória os dados do dataframe
         arquivo = Diretório do arquivo
         extencao = tipo da extenção do arquivo
+        skips_ = se necessário skipar as primeiras linhas
         """
-        self.df: pd.DataFrame = pd.DataFrame
+        df: pd.DataFrame = pd.DataFrame
         if extencao == 'csv':
-            self.df = pd.read_csv(arquivo)
+            try:
+                df = pd.read_csv(arquivo, skiprows=skips_, index_col=False)
+            except:
+                raise ('Falha ao carregar arquivo')
         elif extencao == 'xlsx':
-            self.df = pd.read_excel(arquivo)
+            try:
+                df = pd.read_excel(arquivo, skiprows=skips_, index_col=False)
+            except:
+                raise ('Falha ao carregar arquivo')
+        else:
+            raise ValueError(
+                f'Não foi encontrado o arquivo ou extenção:"{arquivo}","{extencao}"'
+            )
         return df
-
-
-def extract_cepea(dataframe: str) -> pd.DataFrame:
-    """
-    Carrega em memória os daos do dataframe CEPEA
-    dataframe: meu_dataframe.xlsx
-    """
-    return pd.read_excel(dataframe, index_col=False, skiprows=3)
 
 
 def extract_ipca(start_date: str, end_date: str) -> pd.DataFrame:
@@ -76,9 +81,9 @@ def extract_ipca(start_date: str, end_date: str) -> pd.DataFrame:
 
 
 if __name__ == '__main__':
-
-    df_ipca = extract_ipca('01/01/2017', '31/05/2025')
-    print(df_ipca.head())
-    df = extract_ipca(dataframe='./archive/CEPEA-20250416134013.xlsx')
-    print(df.head())
-    # df_ipca.to_csv("ipca_sgs_433.csv", index=False)
+    extract_dtf = extract_df()
+    df = extract_dtf.extract_dataframes(
+        arquivo='./archive/CEPEA-20250416134013.xlsx',
+        extencao='xlsx',
+        skips_=3,
+    )
