@@ -107,4 +107,4 @@ Todo o pipeline foi orquestrado com:
 
 Um pouco do processo rodando:
 
-        ![alt text](../archive/images/image.png)
+        ![alt text](images/image.png)
