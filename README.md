@@ -1,51 +1,123 @@
-Overview
-========
+![Python](https://img.shields.io/badge/Python-3.11.5-blue?logo=python&logoColor=white)
+![Airflow](https://img.shields.io/badge/Airflow-2.8+-brightgreen?logo=apache-airflow)
+![Poetry](https://img.shields.io/badge/Poetry-managed-8c8c8c?logo=python)
 
-Welcome to Astronomer! This project was generated after you ran 'astro dev init' using the Astronomer CLI. This readme describes the contents of the project, as well as how to run Apache Airflow on your local machine.
+📊 Projeto de Eng de Dados Ponta
 
-Project Contents
-================
+Opa bão? 😉
 
-Your Astro project contains the following files and folders:
+Este projeto tem como objetivo implementar uma pipeline de ETL utilizando Apache Airflow orquestrado via Astronomer, com containers Docker e controle de ambiente virtual via Poetry.
 
-- dags: This folder contains the Python files for your Airflow DAGs. By default, this directory includes one example DAG:
-    - `example_astronauts`: This DAG shows a simple ETL pipeline example that queries the list of astronauts currently in space from the Open Notify API and prints a statement for each astronaut. The DAG uses the TaskFlow API to define tasks in Python, and dynamic task mapping to dynamically print a statement for each astronaut. For more on how this DAG works, see our [Getting started tutorial](https://www.astronomer.io/docs/learn/get-started-with-airflow).
-- Dockerfile: This file contains a versioned Astro Runtime Docker image that provides a differentiated Airflow experience. If you want to execute other commands or overrides at runtime, specify them here.
-- include: This folder contains any additional files that you want to include as part of your project. It is empty by default.
-- packages.txt: Install OS-level packages needed for your project by adding them to this file. It is empty by default.
-- requirements.txt: Install Python packages needed for your project by adding them to this file. It is empty by default.
-- plugins: Add custom or community plugins for your project to this file. It is empty by default.
-- airflow_settings.yaml: Use this local-only file to specify Airflow Connections, Variables, and Pools instead of entering them in the Airflow UI as you develop DAGs in this project.
+Este projeto foi feito no ambiente linux
 
-Deploy Your Project Locally
-===========================
+🔧 Tecnologias Utilizadas
 
-Start Airflow on your local machine by running 'astro dev start'.
+    - Python 3.11.5
+    - Apache Airflow
+    - Astronomer CLI
+    - Docker
+    - Poetry
+    - Pytest
 
-This command will spin up five Docker containers on your machine, each for a different Airflow component:
+⚙️ Execução e Orquestração
 
-- Postgres: Airflow's Metadata Database
-- Scheduler: The Airflow component responsible for monitoring and triggering tasks
-- DAG Processor: The Airflow component responsible for parsing DAGs
-- API Server: The Airflow component responsible for serving the Airflow UI and API
-- Triggerer: The Airflow component responsible for triggering deferred tasks
+Todo o pipeline foi orquestrado com:
 
-When all five containers are ready the command will open the browser to the Airflow UI at http://localhost:8080/. You should also be able to access your Postgres Database at 'localhost:5432/postgres' with username 'postgres' and password 'postgres'.
+    Apache Airflow, utilizando o Astronomer CLI para facilitar a execução local com Docker.
 
-Note: If you already have either of the above ports allocated, you can either [stop your existing Docker containers or change the port](https://www.astronomer.io/docs/astro/cli/troubleshoot-locally#ports-are-not-available-for-my-local-airflow-webserver).
+    Docker para conteinerização do ambiente completo (Airflow + dependências).
 
-Deploy Your Project to Astronomer
-=================================
+    Poetry para gestão de dependências e ambiente virtual.
 
-If you have an Astronomer account, pushing code to a Deployment on Astronomer is simple. For deploying instructions, refer to Astronomer documentation: https://www.astronomer.io/docs/astro/deploy-code/
+    Pytest para execução de testes unitários garantindo a qualidade das funções críticas.
 
-Contact
-=======
+📦 Como rodar o projeto localmente
 
-The Astronomer CLI is maintained with love by the Astronomer team. To report a bug or suggest a change, reach out to our support.
+    1. Clone o repositório
+
+        - git clone https://github.com/FernandoMS4/projeto_de_dados.git
+
+        - cd projeto_de_dados
+
+        - code .
+
+🚀 Rodando com Astronomer + Docker
+    
+    1. Instale o Astronomer CLI
+        
+        > No linux: curl -sSL install.astronomer.io | sudo bash -s  
+    
+        > Verifique a versão do astronomer: astro version
+    
+        > Caso esteja no Windows utilize o WSL para configurar o ambiente ou installe pelo comandod choco install astronomer
+        
+        OBS: Requer Chocolatey
+
+    2. Inicie o ambiente local com Docker
+
+        - astro dev start
+
+    3. Caso queia visualizar ou baixar o arquivo parquet:
+        1. Para identificar seus containers
+        - docker ps
+
+        2. Para entrar no ambiente 
+        - docker exec -it processo-dados2_5c5e37-scheduler-1 /bin/bash
+
+        3. Para identificar o arquivo gerado
+        - cd archive && ls
+
+        Você vai identificar o arquivo no seguinte formato
+        - boi_gordo_YYYY-MM-DD.parquet
+
+        4. Para copiar o arquivo para o ambiente local
+        - docker cp <ID do container>:/usr/local/airflow/archive/boi_gordo.parquet .
+
+
+📁 Estrutura de arquivos
+
+    ├── airflow_settings.yaml
+    ├── archive
+    │   ├── boi_gordo_base.csv
+    │   ├── boi_gordo.parquet
+    │   └── CEPEA-20250416134013.xlsx
+    ├── dags
+    │   ├── etl_boigordo.py
+    │   ├── exampledag.py
+    │   ├── __init__.py
+    │   └── __pycache__
+    ├── Dockerfile
+    ├── include
+    │   ├── extract.py
+    │   ├── __init__.py
+    │   ├── load.py
+    │   ├── main.py
+    │   ├── __pycache__
+    │   └── transform.py
+    ├── packages.txt
+    ├── plugins
+    ├── poetry.lock
+    ├── pyproject.toml
+    ├── README.md
+    ├── requirements.txt
+    └── tests
+        ├── dags
+        └── etl
+        
+        
 
 poetry run pytest tests/etl/test_*.py
 
 poetry run python include/load.py 
 
-docker cp <CONTAINER_ID>:/usr/local/airflow/archive/boi_gordo.parquet .
+docker ps
+
+docker exec -it processo-dados2_5c5e37-scheduler-1 /bin/bash
+
+cd archive
+
+ls
+
+boi_gordo_2025-05-17.parquet 
+
+docker cp 26d641a2212b:/usr/local/airflow/archive/boi_gordo.parquet .

@@ -40,13 +40,9 @@ class extract_df:
 def extract_ipca(start_date: str, end_date: str) -> pd.DataFrame:
     """
     Busca dados do IPCA Banco central.
-
     start_date e end_date em formato 'dd/mm/yyyy'.
-
     headers para utilização da requisição sem barreiras
-
     Retorna um DataFrame com colunas: ['date', 'value'].
-
     """
     url = (
         'https://api.bcb.gov.br/dados/serie/bcdata.sgs.433/dados'

@@ -37,7 +37,7 @@ def load_boi_gordo(df):
 
 
 def load_dataframe_parquet(df: pd.DataFrame):
-    dt_ = datetime.now().strftime('%Y-%m-%d')
+    dt_ = datetime.now()
     df.to_parquet(f'./archive/boi_gordo_{dt_}.parquet')
 
 

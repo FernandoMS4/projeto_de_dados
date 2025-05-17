@@ -9,8 +9,8 @@ import pandas as pd
 @dag(
     dag_id='Pipeline_dataset_boi_gordo',
     description='ETL do processo de engenharia de dados',
-    schedule='@daily',
-    start_date=datetime(2025, 2, 25),
+    schedule='*/5 * * * *',
+    start_date=datetime(2025, 5, 17),
     catchup=False,
 )
 def pipeline():
