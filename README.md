@@ -105,6 +105,6 @@ Todo o pipeline foi orquestrado com:
         └── etl
 
 
-Um pouco do processo:
+Um pouco do processo rodando:
 
-        ![alt text](image.png)
+        ![alt text](/archive/images/image.png)
