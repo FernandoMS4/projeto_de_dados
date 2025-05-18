@@ -96,7 +96,7 @@ Para visualização do dado em parquet utilize a extenção Data Wrangler, ele t
         - docker ps
 
         2. Para entrar no ambiente 
-        - docker exec -it processo-dados2_5c5e37-scheduler-1 /bin/bash
+        - docker exec -it <Nome do processo> /bin/bash
 
         3. Para identificar o arquivo gerado
         - cd /tmp/archive && ls
