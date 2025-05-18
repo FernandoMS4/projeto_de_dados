@@ -77,7 +77,7 @@ Copie esse caminho (mas não inclua o \astro.exe no final) e adicione-o à vari�
 
 👀 Dicas:
 
-Para visualização do dado em parquet utilize a extenção Data Wrangler
+Para visualização do dado em parquet utilize a extenção Data Wrangler, ele te mostra o dataframe sem ter que criar códigos para visualizar ;)
 
 ![alt text](images/win.png)
 
