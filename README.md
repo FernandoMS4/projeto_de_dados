@@ -91,17 +91,19 @@ Copie esse caminho (mas não inclua o \astro.exe no final) e adicione-o à vari�
         1. Para identificar seus containers
         - docker ps
 
-        2. Para entrar no ambiente 
-        - docker exec -it <Nome do processo> /bin/bash
+        2. Para entrar no ambiente deve encontrar o scheduler algo igual a este: processo-dados_031abb-scheduler-1
+        - docker exec -it <Nome do processo> bash
 
         3. Para identificar o arquivo gerado
-        - cd /tmp/archive && ls
+        - ls /tmp/archive
 
         Você vai identificar o arquivo no seguinte formato
         - boi_gordo_YYYY-MM-DD.parquet
 
-        4. Para copiar o arquivo para o ambiente local
-        - docker cp <ID do container>:/usr/local/airflow/tmp/archive/<FILE_NAME>.parquet .
+        4. Para copiar o arquivo para o ambiente local, saia do bash do docker com o comando "exit" e rode este comando
+        - docker cp processo-dados_031abb-scheduler-1:/tmp/archive/<NOME_DO_ARQUIVO> ./boi_gordo.parquet
+
+        5. Feito isso o arquivo estará no diretório corrente do terminal e você vai encontrar o arquivo com o nome boi_gordo.parquet
 
 👀 Dicas:
 
