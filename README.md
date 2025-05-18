@@ -75,6 +75,9 @@ Copie esse caminho (mas não inclua o \astro.exe no final) e adicione-o à vari�
 
     Em "Variáveis do sistema", edite o Path e adicione o novo caminho.
 
+👀 Dicas:
+
+Para visualização do dado em parquet utilize a extenção Data Wrangler
 
 ![alt text](images/win.png)
 
