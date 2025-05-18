@@ -12,6 +12,7 @@ import pandas as pd
     schedule='*/5 * * * *',
     start_date=datetime(2025, 5, 17),
     catchup=False,
+    is_paused_upon_creation=False
 )
 def pipeline():
     @task
