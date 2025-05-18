@@ -75,10 +75,6 @@ Copie esse caminho (mas não inclua o \astro.exe no final) e adicione-o à vari�
 
     Em "Variáveis do sistema", edite o Path e adicione o novo caminho.
 
-👀 Dicas:
-
-Para visualização do dado em parquet utilize a extenção Data Wrangler, ele te mostra o dataframe sem ter que criar códigos para visualizar ;)
-
 ![alt text](images/win.png)
 
 ![alt text](images/win_comm.png)
@@ -107,6 +103,9 @@ Para visualização do dado em parquet utilize a extenção Data Wrangler, ele t
         4. Para copiar o arquivo para o ambiente local
         - docker cp <ID do container>:/usr/local/airflow/tmp/archive/<FILE_NAME>.parquet .
 
+👀 Dicas:
+
+Para visualização do dado em parquet utilize a extenção Data Wrangler, ele te mostra o dataframe sem ter que criar códigos para visualizar ;)
 
 📁 Estrutura de arquivos
 
