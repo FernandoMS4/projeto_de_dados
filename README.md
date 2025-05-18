@@ -140,6 +140,7 @@ Um pouco do processo rodando
 
 ![Processo no docker](images/docker.png)
 
+Rodando em um ambiente diferente:
 ![Em um anbiente diferente](images/windows_run.png)
 
 Testes Unitários:
