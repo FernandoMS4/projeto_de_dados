@@ -54,16 +54,33 @@ Todo o pipeline foi orquestrado com:
             -   wsl --update
             -   wsl --install --no-distribution
             -   winget install -e --id Astronomer.Astro
-            -   Get-Command astro
+
+
+
+📁 Adicionando o Astronomer ao PATH
+
+Depois da instalação, o executável astro pode não ser imediatamente reconhecido no terminal. Para corrigir isso:
+
+    Rode o seguinte comando no PowerShell:
+
+        Get-Command astro
+
+    Esse comando mostrará o caminho completo do executável. Algo como:
+
+        C:\Users\seu-usuario\AppData\Local\Microsoft\WinGet\Packages\Astronomer.Astro_Microsoft.Winget.Source_8wekyb3d8bbwe\
+
+Copie esse caminho (mas não inclua o \astro.exe no final) e adicione-o à variável de ambiente PATH:
+
+    Vá em Painel de Controle → Sistema → Configurações avançadas do sistema → Variáveis de Ambiente
+
+    Em "Variáveis do sistema", edite o Path e adicione o novo caminho.
+
 
 ![alt text](images/win.png)
 
-        > copie o path e adicione-o as suas variáveis de ambiente irá ser algo parecido:
-            - C:\Users\ferna\AppData\Local\Microsoft\WinGet\Packages\Astronomer.Astro_Microsoft.Winget.Source_8wekyb3d8bbwe\
-
 ![alt text](images/win_comm.png)
 
-        > OBS: não adicione no final \astro.exe
+        
         
     2. Inicie o ambiente local com Docker
 
