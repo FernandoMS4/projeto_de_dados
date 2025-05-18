@@ -101,7 +101,7 @@ Copie esse caminho (mas não inclua o \astro.exe no final) e adicione-o à vari�
         - boi_gordo_YYYY-MM-DD.parquet
 
         4. Para copiar o arquivo para o ambiente local, saia do bash do docker com o comando "exit" e rode este comando
-        - docker cp processo-dados_031abb-scheduler-1:/tmp/archive/<NOME_DO_ARQUIVO> ./boi_gordo.parquet
+        - docker cp <NOME DO PROCESSO>:/tmp/archive/<NOME_DO_ARQUIVO> ./boi_gordo.parquet
 
         5. Feito isso o arquivo estará no diretório corrente do terminal e você vai encontrar o arquivo com o nome boi_gordo.parquet
 
