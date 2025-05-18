@@ -1,7 +1,7 @@
 from .extract import extract_df
 import pandas as pd
 from datetime import datetime
-
+import os
 
 def load_boi_gordo(df):
     """
@@ -37,9 +37,9 @@ def load_boi_gordo(df):
 
 
 def load_dataframe_parquet(df: pd.DataFrame):
-    dt_ = datetime.now()
-    df.to_parquet(f'./archive/boi_gordo_{dt_}.parquet')
-
+    os.makedirs('/tmp/archive', exist_ok=True)  # pasta temporária que sempre funciona
+    dt_ = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+    df.to_parquet(f'/tmp/archive/boi_gordo_{dt_}.parquet')
 
 if __name__ == '__main__':
     df = pd.read_parquet('archive/boi_gordo_.parquet')

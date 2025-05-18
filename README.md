@@ -50,13 +50,26 @@ Todo o pipeline foi orquestrado com:
     
         > Verifique a versão do astronomer: astro version
     
-        > Caso esteja no Windows utilize o WSL para configurar o ambiente ou installe pelo comandod choco install astronomer
-        
-        OBS: Requer Chocolatey
+        > Caso esteja no Windows utilize o WSL para configurar o ambiente ou installe seguindo os passos a seguir no Powershell:
+            -   wsl --update
+            -   wsl --install --no-distribution
+            -   winget install -e --id Astronomer.Astro
+            -   Get-Command astro
 
+![alt text](images/win.png)
+
+        > copie o path e adicione-o as suas variáveis de ambiente irá ser algo parecido:
+            - C:\Users\ferna\AppData\Local\Microsoft\WinGet\Packages\Astronomer.Astro_Microsoft.Winget.Source_8wekyb3d8bbwe\
+
+![alt text](images/win_comm.png)
+
+        > OBS: não adicione no final \astro.exe
+        
     2. Inicie o ambiente local com Docker
 
         - astro dev start
+        
+        > A partir deste ponto você irá identificar a dag responsável pelo etl no airflow
 
     3. Caso queia visualizar ou baixar o arquivo parquet:
         1. Para identificar seus containers
@@ -66,13 +79,13 @@ Todo o pipeline foi orquestrado com:
         - docker exec -it processo-dados2_5c5e37-scheduler-1 /bin/bash
 
         3. Para identificar o arquivo gerado
-        - cd archive && ls
+        - cd /tmp/archive && ls
 
         Você vai identificar o arquivo no seguinte formato
         - boi_gordo_YYYY-MM-DD.parquet
 
         4. Para copiar o arquivo para o ambiente local
-        - docker cp <ID do container>:/usr/local/airflow/archive/boi_gordo.parquet .
+        - docker cp <ID do container>:/usr/local/airflow/tmp/archive/<FILE_NAME>.parquet .
 
 
 📁 Estrutura de arquivos
@@ -106,6 +119,8 @@ Todo o pipeline foi orquestrado com:
         └── etl
 
 Um pouco do processo rodando
-![alt text](images/image.png)
+![Da falha ao erro](images/image.png)
 
-![alt text](images/docker.png)
+![Processo no docker](images/docker.png)
+
+"[Em um anbiente diferente](images/windows_run.png)
